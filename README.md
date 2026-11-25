@@ -1,36 +1,74 @@
-# Dispensa • Restaurant workspace
+# Dispensa — Restaurant Management System
 
-A bilingual React frontend for a single restaurant. The demo opens as the fictional owner. It includes cashier bills and payments, sales history, recipe costing, weighted-average inventory, suppliers and orders, expenses, reports, staff previews and appearance settings. All restaurant data is synthetic. Changes persist in this browser.
+![Status](https://img.shields.io/badge/Status-Under%20Development-orange?style=flat-square)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
 
-## Run the project
+## Overview
 
-Extract the entire ZIP. To try the prebuilt frontend immediately, open `dist/index.html` in a browser. For development, use Node.js 20.19+ or 22.13+. In the project folder run:
+Dispensa is a restaurant management application designed to centralize daily operations, simplify inventory management, and help restaurant owners make informed business decisions.
 
-```sh
+**The project is currently under development. Only the frontend has been implemented so far.** The current version uses synthetic data and browser-based persistence. No backend, database integration, or production authentication is implemented yet.
+
+## Live Demo
+
+[Explore the Dispensa frontend](https://zakariaguettiche3.github.io/dispensa-restaurant-dashboard/)
+
+[View the source repository](https://github.com/ZakariaGuettiche3/dispensa-restaurant-dashboard)
+
+## Current Features
+
+- **Cashier:** bills, payments, and sales history.
+- **Inventory:** stock management, ingredients, and recipe costing.
+- **Suppliers:** supplier management and purchase orders.
+- **Expenses:** tracking operational expenses.
+- **Analytics:** reports and business performance indicators.
+- **Staff:** role-based interface previews using demo accounts.
+- **Localization:** English and Italian interfaces.
+
+## Technical Architecture
+
+The React frontend follows a modular architecture, separating reusable components, custom hooks, feature modules, business logic, state management, and services.
+
+```text
+src/
+├── app/          # Application startup and orchestration
+├── components/   # Reusable UI components
+├── features/     # Restaurant management modules
+├── hooks/        # Reusable React hooks
+├── domain/       # Business rules
+├── services/     # Browser persistence and supporting services
+├── state/        # Application state
+├── navigation/   # Routes and screen registry
+├── i18n/         # Localization
+└── utils/        # Shared utilities
+```
+
+## Run Locally
+
+Download and extract `Dispensa_React_Frontend.zip` from the repository. In the extracted project folder, run the following commands using Node.js 20.19+ or 22.13+:
+
+```bash
 npm ci
 npm run dev
 ```
 
-Open http://localhost:5173. The development server rebuilds source changes automatically. Reload the page to see them. Run `npm run build` to update the static distribution, `npm run lint` for static checks, and `npm test` for the production build and regression tests.
+Open `http://localhost:5173` in your browser.
 
-## How the code fits together
+## Development Roadmap
 
-| Directory under src | Responsibility |
-| --- | --- |
-| app | Startup, building the current view model, and dispatching user actions |
-| components | React application layout, shared navigation and screen rendering |
-| hooks | React subscriptions, event listener lifecycle, screen controls and searchable lists |
-| features | Screens and actions grouped by restaurant task, including cashier, expenses, inventory, reports and staff |
-| domain | Framework-independent business rules, role projections and transaction handlers |
-| services | Browser persistence, receipt attachments, image processing, file downloads and reporting |
-| state | Session, transient view state, selectors and the observable React snapshot |
-| navigation | Routes, access groups and the explicit screen registry |
-| forms and templates | Shared bilingual form controls, validation, tables and existing HTML-based screen renderers |
-| i18n and utils | Translation, formatting, escaping, color contrast, date and workbook helpers |
-| data, styles and assets | Synthetic seed data, visual styling, icons and bundled menu images |
+- [x] Frontend interface and modular architecture
+- [x] Synthetic data and browser-based persistence
+- [ ] Backend API development
+- [ ] Database integration
+- [ ] Authentication and role-based authorization
+- [ ] Integration testing and production deployment
 
-**Follow a staff preview through the code.** The directory component under `features/staff` uses `useSearchableList` for search and pagination. Its preview button dispatches the selected employee ID. The preview service requests the matching role projection from the domain, records the originating page, and navigates to the employee’s home screen. The workspace hook subscribes React to the updated view. Exiting preview restores the original page.
+## Author
 
-**Add a screen.** Put the view and its actions in its feature directory. Register its route in `navigation/screenRegistry.js` and its access group in `navigation/routes.js`. Existing screens can return escaped HTML through the shared template renderer. For a new React screen, return a typed screen model and select its component in `components/ScreenContent.jsx`, following Staff Directory. Use the domain layer for transaction rules, the storage service for persistence and paired English/Italian labels for UI text.
+Developed by [Zakaria Guettiche](https://github.com/ZakariaGuettiche3).
 
-**Storage and compatibility.** The browser storage keys and saved restaurant record format match the previous React release. Reloading on the same origin retains demo records. File-based previews and localhost can have separate browser storage. Demo role switching is available in appearance settings. Use synthetic records only.
+---
+
+*This project is an ongoing development prototype, not a production-ready restaurant management system.*
